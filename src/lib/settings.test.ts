@@ -856,6 +856,15 @@ describe("chat font size", () => {
 
 });
 
+describe("swiping to use the suggestion", () => {
+  it("is on unless it was turned off, and keeps only a boolean", () => {
+    expect(DEFAULT_SETTINGS.swipeAcceptSuggestion).toBe(true);
+    expect(sanitizeSettings({}).swipeAcceptSuggestion).toBe(true);
+    expect(sanitizeSettings({ swipeAcceptSuggestion: false }).swipeAcceptSuggestion).toBe(false);
+    expect(sanitizeSettings({ swipeAcceptSuggestion: "no" }).swipeAcceptSuggestion).toBe(true);
+  });
+});
+
 describe("queued messages", () => {
   it("sends queued messages by themselves unless that was turned off", () => {
     expect(DEFAULT_SETTINGS.autoSendQueued).toBe(true);

@@ -62,6 +62,8 @@ export const SETTINGS_KO: Record<string, string> = {
   "Every pane on this device. Switching a pane's lens keeps it there until this changes. Auto: chat for an agent on a touch screen, else the terminal.": "이 기기의 모든 패널에 적용됩니다. 패널에서 화면을 바꾸면 이 설정을 다시 바꿀 때까지 그 화면으로 열립니다. 자동: 터치 화면의 에이전트는 채팅, 그 밖에는 터미널.",
   "Show thinking": "생각 표시",
   "Expand thinking": "생각 펼치기",
+  "Swipe across the message box to use the suggestion": "메시지 입력란을 밀어 제안 사용",
+  "When Claude Code suggests a next prompt, a swipe forward across the empty message box puts it in, and a dim arrow says so. When off, there is no swipe and no arrow; the suggestion chip above is separate.": "Claude Code가 다음 프롬프트를 제안하면, 빈 메시지 입력란을 앞으로 밀어 넣을 수 있고 흐린 화살표로 알려 줍니다. 끄면 밀기도 화살표도 없으며, 위의 제안 칩은 별개입니다.",
   "Collapse work": "작업 과정 접어 두기",
   "A turn's work starts folded to one line, also while the agent works, unless it needs you. One you open or fold stays that way for its message": "턴의 작업을 한 줄로 접은 채 보여줍니다. 에이전트가 작업 중일 때도 접고, 내 응답이 필요할 때만 펼칩니다. 직접 펼치거나 접은 작업은 그 메시지에서 그대로 유지됩니다",
   "Chat width": "채팅 너비",
