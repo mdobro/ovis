@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type KeyboardEvent as ReactKeyboardEvent, type ReactNode, type RefObject } from "react";
-import { ALargeSmall, AppWindow, ArrowDownUp, ArrowLeft, ArrowRight, AudioLines, Bell, Bot, Box, Brain, CheckCheck, ChevronLeft, ChevronRight, CircleDot, ClipboardCopy, ClipboardPaste, Command, CornerDownLeft, ExternalLink, FileClock, FilePen, Filter, FlaskConical, Gauge, Globe, Image as ImageIcon, Info, Keyboard, Languages, Layers, ListCollapse, ListTree, Lock, MessageCircleQuestionMark, MessageSquare, MessageSquareReply, MessagesSquare, Mic, Monitor, Mouse, MousePointer2, MoveHorizontal, OctagonX, Palette, PanelLeft, PanelRight, Plus, Puzzle, Rows3, Search, Send, Server, Shapes, ShieldAlert, Smartphone, Sparkles, SquareTerminal, Star, SunMoon, Tag, Tags, TextCursorInput, Timer, Trash2, Type, Volume2, WandSparkles, WrapText, X, type LucideIcon } from "lucide-react";
+import { ALargeSmall, AppWindow, ArrowDownUp, ArrowLeft, AudioLines, Bell, Bot, Box, Brain, CheckCheck, ChevronLeft, ChevronRight, CircleDot, ClipboardCopy, ClipboardPaste, Command, CornerDownLeft, ExternalLink, FileClock, FilePen, Filter, FlaskConical, Gauge, Globe, Image as ImageIcon, Info, Keyboard, Languages, Layers, ListCollapse, ListTree, Lock, MessageCircleQuestionMark, MessageSquare, MessageSquareReply, MessagesSquare, Mic, Monitor, Mouse, MousePointer2, MoveHorizontal, OctagonX, Palette, PanelLeft, PanelRight, Plus, Puzzle, Rows3, Search, Send, Server, Shapes, ShieldAlert, Smartphone, Sparkles, SquareTerminal, Star, SunMoon, Tag, Tags, TextCursorInput, Timer, Trash2, Type, Volume2, WandSparkles, WrapText, X, type LucideIcon } from "lucide-react";
 
 import "./SettingsDialog.css";
 
@@ -661,10 +661,6 @@ function ChatPage() {
             {touch && chip(Sparkles, t("Suggestion"), settings.suggestionChip, (suggestionChip) => update({ suggestionChip }))}
           </span>
         </SettingsRow>
-        {/* a swipe needs a finger: the row is drawn on a touch screen only, as the suggestion chip above is */}
-        {touch && <SettingsRow icon={ArrowRight} label={t("Swipe across the message box to use the suggestion")} description={t("When Claude Code suggests a next prompt, a swipe forward across the empty message box puts it in, and a dim arrow says so. When off, there is no swipe and no arrow; the suggestion chip above is separate.")} reset={["swipeAcceptSuggestion"]}>
-          <Toggle label={t("Swipe across the message box to use the suggestion")} checked={settings.swipeAcceptSuggestion} onChange={(swipeAcceptSuggestion) => update({ swipeAcceptSuggestion })} />
-        </SettingsRow>}
       </SettingsGroup>
 
       <SettingsGroup title={t("Quick replies")} section="quick-replies">

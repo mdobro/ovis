@@ -62,8 +62,6 @@ export const SETTINGS_ZH: Record<string, string> = {
   "Every pane on this device. Switching a pane's lens keeps it there until this changes. Auto: chat for an agent on a touch screen, else the terminal.": "适用于此设备上的所有窗格。在窗格中切换视图后，在更改此设置之前都会以该视图打开。自动：触屏上的智能体为聊天，其余为终端。",
   "Show thinking": "显示思考过程",
   "Expand thinking": "展开思考过程",
-  "Swipe across the message box to use the suggestion": "滑动消息框以使用建议",
-  "When Claude Code suggests a next prompt, a swipe forward across the empty message box puts it in, and a dim arrow says so. When off, there is no swipe and no arrow; the suggestion chip above is separate.": "当 Claude Code 给出下一条提示建议时，在空消息框中向前滑动即可填入，并用淡色箭头提示。关闭后既没有滑动也没有箭头；上方的建议标签是单独的选项。",
   "Collapse work": "折叠工作过程",
   "A turn's work starts folded to one line, also while the agent works, unless it needs you. One you open or fold stays that way for its message": "每轮的工作过程默认折叠为一行，Agent 工作时也是如此，需要你回应时除外。你手动展开或折叠的工作过程在该条消息中保持不变",
   "Chat width": "聊天宽度",

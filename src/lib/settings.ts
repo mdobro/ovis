@@ -220,9 +220,6 @@ export interface Settings {
   /** on a touch screen, a chip above the message box offers the prompt the agent suggests next.
    * Not `showSuggestionChip`: that key was on by default until 0.4.9 and is still stored on phones */
   suggestionChip: boolean;
-  /** on a touch screen, a forward swipe across the empty message box takes the suggested prompt, and a dim arrow says so;
-   *  false: no swipe and no arrow (the suggestion chip is a separate choice) */
-  swipeAcceptSuggestion: boolean;
   /** show the agent's folded reasoning blocks in the chat view */
   showThinking: boolean;
   /** the reasoning showThinking shows starts open instead of folded (#2346); a row the reader opens or folds stays so for its message */
@@ -299,7 +296,7 @@ export type DiffStyle = (typeof DIFF_STYLES)[number];
 
 /** Raw custom text, key combinations and account keys are never copied. Requiring every other
  * Settings field in the projection makes a new field require an explicit collection decision.
- * keyBarExpanded, herdrPrefixKeys, agentLocks, lockedAgents, opencodeParentEnds, ompHeldFiles, restoreReplacedServer, the named agent groups, fileOpen, reopenFileOnReturn, webLinks, reuseExternalLinkTab, the launch modes, followHerdrFocus, sidebarPeek, sidebarBackgroundWorkspaces, codexDrag, autoTabNames, composerArtifacts, composerPasteSend, composerBtw, terminalMirrorWrap, terminalImages, terminalAttachButton, terminalKeyboardOnRequest, terminalFoldKeyBar, swipeAcceptSuggestion, sidebarFilter, sidebarContext, sidebarAgentTree, foldHelpers, pcLoad, voiceEngine, the agent groups, the
+ * keyBarExpanded, herdrPrefixKeys, agentLocks, lockedAgents, opencodeParentEnds, ompHeldFiles, restoreReplacedServer, the named agent groups, fileOpen, reopenFileOnReturn, webLinks, reuseExternalLinkTab, the launch modes, followHerdrFocus, sidebarPeek, sidebarBackgroundWorkspaces, codexDrag, autoTabNames, composerArtifacts, composerPasteSend, composerBtw, terminalMirrorWrap, terminalImages, terminalAttachButton, terminalKeyboardOnRequest, terminalFoldKeyBar, sidebarFilter, sidebarContext, sidebarAgentTree, foldHelpers, pcLoad, voiceEngine, the agent groups, the
  * interface font, the file text size and the folds its blocks start in are not collected: the telemetry schema
  * (shared/telemetry.ts) does not carry them. */
 type TelemetrySourceSettings = Omit<Settings,
@@ -308,7 +305,7 @@ type TelemetrySourceSettings = Omit<Settings,
   | "claudeLaunchModel" | "claudeLaunchEffort" | "codexLaunchModel" | "codexLaunchEffort"
   | "followHerdrFocus" | "sidebarPeek" | "sidebarBackgroundWorkspaces" | "codexDrag" | "composerArtifacts" | "composerPasteSend" | "composerBtw" | "terminalMirrorWrap" | "sidebarFilter" | "sidebarContext" | "sidebarAgentTree" | "foldHelpers" | "pcLoad"
   | "expandThinking" | "foldWork" | "customThemes" | "autoTabNames" | "voiceEngine" | "agentGroups" | "agentGroupSort" | "terminalImages" | "terminalAttachButton"
-  | "terminalKeyboardOnRequest" | "terminalFoldKeyBar" | "swipeAcceptSuggestion" | "fileFontSize" | "fileFontBase" | "editTextFiles" | "reopenFileOnReturn">;
+  | "terminalKeyboardOnRequest" | "terminalFoldKeyBar" | "fileFontSize" | "fileFontBase" | "editTextFiles" | "reopenFileOnReturn">;
 
 /** Compare structured custom settings by content against this app's built-in defaults. */
 function differsFromDefault(value: unknown, defaultValue: unknown): boolean {
@@ -385,7 +382,7 @@ export const SETTING_SCOPE = {
   theme: "shared", palette: "shared", darkTheme: "shared", lightTheme: "shared", language: "shared", sidebarRows: "shared", agentOrder: "shared",
   agentMarks: "shared", agentLocks: "shared", lockedAgents: "shared", opencodeParentEnds: "shared", ompHeldFiles: "shared", restoreReplacedServer: "shared", agentNamedGroups: "shared", agentGroupNames: "shared", agentGroupOf: "shared", autoSendQueued: "shared", autoTabNames: "shared", showThinking: "shared", quickReplies: "shared",
   showQuickReplies: "shared", showUsage: "shared", usageCount: "shared",
-  usageGlance: "shared", usageOrder: "shared", usageHidden: "shared", defaultView: "device", suggestionChip: "device", swipeAcceptSuggestion: "device",
+  usageGlance: "shared", usageOrder: "shared", usageHidden: "shared", defaultView: "device", suggestionChip: "device",
   terminalInputMode: "device", keyBarExtras: "device", keyBarItems: "device", keyBarExpanded: "device", shortcutOverrides: "device", herdrPrefixKeys: "device", density: "device",
   terminalFontSize: "device",
   terminalWheelSpeed: "device", terminalFontFamily: "device", paneClipboard: "device", releasePaneAway: "device",
@@ -508,7 +505,6 @@ export const DEFAULT_SETTINGS: Settings = {
   composerPasteSend: false,
   composerBtw: false,
   suggestionChip: false,
-  swipeAcceptSuggestion: true,
   showThinking: false,
   expandThinking: false,
   foldWork: false,
@@ -743,7 +739,6 @@ export function sanitizeSettings(raw: unknown): Settings {
     composerPasteSend: typeof record["composerPasteSend"] === "boolean" ? record["composerPasteSend"] : DEFAULT_SETTINGS.composerPasteSend,
     composerBtw: typeof record["composerBtw"] === "boolean" ? record["composerBtw"] : DEFAULT_SETTINGS.composerBtw,
     suggestionChip: typeof record["suggestionChip"] === "boolean" ? record["suggestionChip"] : DEFAULT_SETTINGS.suggestionChip,
-    swipeAcceptSuggestion: typeof record["swipeAcceptSuggestion"] === "boolean" ? record["swipeAcceptSuggestion"] : DEFAULT_SETTINGS.swipeAcceptSuggestion,
     showThinking: typeof record["showThinking"] === "boolean" ? record["showThinking"] : DEFAULT_SETTINGS.showThinking,
     expandThinking: typeof record["expandThinking"] === "boolean" ? record["expandThinking"] : DEFAULT_SETTINGS.expandThinking,
     foldWork: typeof record["foldWork"] === "boolean" ? record["foldWork"] : DEFAULT_SETTINGS.foldWork,

@@ -640,7 +640,7 @@ export function Composer({
 
   // a forward swipe across the empty box takes the suggestion, as Tab does; a phone has no Tab
   const swipe = useRef<{ x: number; y: number } | null>(null);
-  const swipeable = settings.swipeAcceptSuggestion && offered !== null && text === "";
+  const swipeable = offered !== null && text === "";
   const swipeAccept = useMemo(() => ({
     onTouchStart: (event: React.TouchEvent<HTMLTextAreaElement>) => {
       const touch = event.touches[0];
@@ -1523,7 +1523,7 @@ export function Composer({
           // and a disabled box would lose its focus and the dictated text with it
           onPaste={onPaste}
           onKeyDown={onKeyDown}
-          {...(settings.swipeAcceptSuggestion ? swipeAccept : undefined)}
+          {...swipeAccept}
           onClick={(event) => {
             setCaret(event.currentTarget.selectionStart);
             setMenuDismissed(false);

@@ -14,11 +14,9 @@ const globals = ["window", "document", "navigator", "requestAnimationFrame", "ca
 const saved = new Map<string, PropertyDescriptor | undefined>();
 let renderer: ReactTestRenderer | undefined;
 let direction = "ltr";
-let swipeSetting = true;
 
 beforeEach(() => {
   direction = "ltr";
-  swipeSetting = true;
   for (const key of globals) saved.set(key, Object.getOwnPropertyDescriptor(globalThis, key));
   const listen = { addEventListener() {}, removeEventListener() {} };
   const values: Record<string, unknown> = {
@@ -34,7 +32,7 @@ beforeEach(() => {
   spyOn(paneLifetimes.paneStorage, "getItem").mockImplementation((key) => data.get(key) ?? null);
   spyOn(paneLifetimes.paneStorage, "setItem").mockImplementation((key, value) => { data.set(key, value); });
   spyOn(paneLifetimes.paneStorage, "removeItem").mockImplementation((key) => { data.delete(key); });
-  spyOn(settingsModule, "useSettings").mockImplementation(() => ({ settings: { ...settingsModule.DEFAULT_SETTINGS, showUsage: false, swipeAcceptSuggestion: swipeSetting }, resolvedLanguage: "en" }) as ReturnType<typeof settingsModule.useSettings>);
+  spyOn(settingsModule, "useSettings").mockImplementation(() => ({ settings: { ...settingsModule.DEFAULT_SETTINGS, showUsage: false }, resolvedLanguage: "en" }) as ReturnType<typeof settingsModule.useSettings>);
   spyOn(commandsModule, "usePaneCommands").mockReturnValue([]);
   spyOn(usageModule, "useUsage").mockReturnValue({ report: null } as ReturnType<typeof usageModule.useUsage>);
   spyOn(facesModule, "useFacesArrived").mockReturnValue(0);
@@ -82,13 +80,4 @@ it("leaves the box alone for a backward swipe, a vertical drag, an edge start or
   expect(await swipe("", "run the tests", [100, 300], [130, 420])).toBe("");
   expect(await swipe("", "run the tests", [10, 300], [200, 300])).toBe("");
   expect(await swipe("typed", "run the tests", [100, 300], [200, 300])).toBe("typed");
-});
-
-it("with the setting off there is no swipe and no arrow hint", async () => {
-  swipeSetting = false;
-  const props: ComposerProps = { paneId: pane, agent: "claude", agentStatus: "idle", connected: true, autoFocus: false, suggestion: "run the tests", onSend: () => true, onAbort() {}, onUploadImage: async () => "" };
-  await act(async () => { renderer = create(<Composer {...props} />); });
-  expect(renderer!.root.findAll((node) => node.type === "textarea" && node.props.onTouchStart !== undefined)).toEqual([]);
-  expect(renderer!.root.findAll((node) => node.props.className === "composer-swipe-hint")).toEqual([]);
-  expect(composerDrafts.read(draftKey).text).toBe("");
 });
