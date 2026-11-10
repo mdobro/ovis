@@ -1549,7 +1549,7 @@ export function Composer({
         )}
         {/* a dim arrow at the end of the first line says the suggestion can be swiped in; it is also the action for a screen reader */}
         {swipeable && (
-          <button type="button" tabIndex={-1} className="composer-swipe-hint" title={t("Use the suggestion")} aria-label={t("Use the suggestion")}
+          <button type="button" tabIndex={-1} className="composer-swipe-hint" title={t("Swipe or tap to use the suggestion")} aria-label={t("Swipe or tap to use the suggestion")}
             onClick={acceptSuggestion}>→</button>
         )}
         <textarea
